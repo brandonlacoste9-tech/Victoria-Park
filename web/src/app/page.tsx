@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function VictoriaParkDemo() {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d4af37]/30 selection:text-white flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[url('/bg.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d4af37]/30 selection:text-white flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[url('/bg.png')] bg-cover bg-center bg-no-repeat">
       
       {/* Dark overlay to ensure text readability against the background image */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] pointer-events-none" />
