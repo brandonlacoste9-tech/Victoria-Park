@@ -49,7 +49,10 @@ export function VapiWebCallButton({
         model: {
           provider: "openai",
           model: "gpt-4o",
-          systemPrompt: `You are the elite AI Receptionist for Victoria Park Medispa. Your tone is incredibly professional, warm, refined, and luxury-tier.
+          messages: [
+            {
+              role: "system",
+              content: `You are the elite AI Receptionist for Victoria Park Medispa. Your tone is incredibly professional, warm, refined, and luxury-tier.
 You help callers book appointments for our exclusive aesthetic treatments across our various clinics.
 
 Conversation flow:
@@ -57,6 +60,8 @@ Conversation flow:
 2. VERY IMPORTANT: Since we have multiple clinics, you MUST politely ask which Victoria Park location they would prefer to visit (e.g. Westmount, Downtown, Laval, etc.) before proceeding.
 3. Clarify which service they require.
 4. Assist them gracefully.`
+            }
+          ]
         },
         voice: {
           provider: "11labs",
@@ -70,8 +75,12 @@ Conversation flow:
         await vapi?.start(assistant);
       } catch (err) {
         console.error("Failed to start call:", err);
-        // @ts-expect-error err could be any
-        alert("Failed to start call: " + (err.message || JSON.stringify(err)));
+        let errMsg = "Unknown Error";
+        if (err instanceof Error) errMsg = err.message;
+        else if (typeof err === "object" && err !== null) {
+          errMsg = (err as any).message || (err as any).error?.message || JSON.stringify(err);
+        } else errMsg = String(err);
+        alert("Failed to start call: " + errMsg);
         setCallStatus("idle");
       }
     }
