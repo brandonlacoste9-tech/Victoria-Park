@@ -36,7 +36,7 @@ export default function VictoriaParkDemo() {
         </div>
 
         {/* Victoria Park Logo (with clip-path to slice off the screenshot artifacts on the edges) */}
-        <img src="/logo.png" alt="Victoria Park Medispa" className="h-24 md:h-32 object-contain mb-4 mix-blend-screen [clip-path:inset(0_16px_0_16px)]" />
+        <img src="/logo.png" alt="Victoria Park Medispa" className="h-24 md:h-32 object-contain mb-4 mix-blend-screen [clip-path:inset(0_2px_0_2px)]" />
 
         {/* Subtitle - Metallic Gradient */}
         <p className="text-[11px] tracking-[0.35em] uppercase font-bold mb-8 z-10"
