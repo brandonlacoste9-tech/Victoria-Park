@@ -78,7 +78,10 @@ Conversation flow:
         let errMsg = "Unknown Error";
         if (err instanceof Error) errMsg = err.message;
         else if (typeof err === "object" && err !== null) {
-          errMsg = (err as any).message || (err as any).error?.message || JSON.stringify(err);
+          const errObj = err as Record<string, unknown>;
+          const errMessage = errObj.message;
+          const nestedErr = errObj.error as Record<string, unknown> | undefined;
+          errMsg = typeof errMessage === 'string' ? errMessage : (typeof nestedErr?.message === 'string' ? nestedErr.message : JSON.stringify(err));
         } else errMsg = String(err);
         alert("Failed to start call: " + errMsg);
         setCallStatus("idle");
