@@ -20,12 +20,13 @@ export function Logo({
     <a
       href={href}
       className={cn("group relative z-50 inline-flex items-center", className)}
-      aria-label="JustBookMe home"
+      aria-label="Victoria Park home"
     >
       <img
-        src="/logo-new.png"
-        alt="JustBookMe"
-        className="pointer-events-none h-12 w-auto shrink-0 rounded-xl transition-transform group-hover:scale-105"
+        src="/logo.png"
+        alt="Victoria Park Medispa"
+        className="pointer-events-none h-12 w-auto shrink-0 transition-transform group-hover:scale-105"
+        style={{ filter: "invert(1)" }} // If the dashboard is light mode, invert the white logo to black
       />
     </a>
   );

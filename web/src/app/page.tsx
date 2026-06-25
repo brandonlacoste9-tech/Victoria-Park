@@ -52,13 +52,21 @@ export default function VictoriaParkDemo() {
         </p>
 
         {/* The Action Button Container */}
-        <div className="w-full flex justify-center mb-8 z-10 relative">
+        <div className="w-full flex flex-col items-center gap-4 mb-8 z-10 relative">
            {/* Intense Outer Glow for the button */}
-           <div className="absolute inset-0 bg-[#d4af37] blur-[30px] opacity-30 rounded-full pointer-events-none" />
+           <div className="absolute top-0 w-full h-[56px] bg-[#d4af37] blur-[30px] opacity-30 rounded-full pointer-events-none" />
            
            <div className="relative w-[280px]">
              <VapiWebCallButton />
            </div>
+
+           {/* View Dashboard Button */}
+           <a 
+             href="/dashboard"
+             className="relative w-[280px] flex items-center justify-center gap-2 rounded-full px-8 py-3 text-[14px] tracking-widest uppercase font-semibold border border-white/10 bg-white/5 hover:bg-white/10 text-white transition-all duration-300"
+           >
+             View Dashboard
+           </a>
         </div>
 
         {/* Footer info inside card */}
