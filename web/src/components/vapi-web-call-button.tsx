@@ -68,8 +68,9 @@ Conversation flow:
 
       try {
         await vapi?.start(assistant);
-      } catch (err: any) {
+      } catch (err) {
         console.error("Failed to start call:", err);
+        // @ts-expect-error err could be any
         alert("Failed to start call: " + (err.message || JSON.stringify(err)));
         setCallStatus("idle");
       }

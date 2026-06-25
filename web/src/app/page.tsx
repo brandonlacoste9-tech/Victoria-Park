@@ -2,7 +2,6 @@
 
 import { VapiWebCallButton } from "@/components/vapi-web-call-button";
 import { Sparkles, ShieldCheck } from "lucide-react";
-import Image from "next/image";
 
 export default function VictoriaParkDemo() {
   return (
