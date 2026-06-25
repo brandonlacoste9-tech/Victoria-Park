@@ -5,10 +5,11 @@ import { Sparkles, ShieldCheck } from "lucide-react";
 
 export default function VictoriaParkDemo() {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d4af37]/30 selection:text-white flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[url('/bg2.png')] bg-cover bg-center bg-no-repeat">
+    <div className="min-h-screen bg-black text-[#FAFAFA] font-sans selection:bg-[#d4af37]/30 selection:text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
       
-      {/* Subtle overlay to soften the bright blue background and keep the focus on the dark luxury card */}
-      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm pointer-events-none" />
+      {/* Massive golden sunlight glow behind the card */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] bg-[#d4af37] opacity-[0.25] blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#fff7d6] opacity-20 blur-[80px] rounded-full pointer-events-none" />
 
       {/* Main Content Card - Leather Texture & Gold Border */}
       <div className="relative z-10 w-full max-w-[420px] mx-auto rounded-[32px] p-10 md:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col items-center text-center overflow-hidden"
