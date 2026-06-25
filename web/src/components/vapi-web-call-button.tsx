@@ -77,12 +77,11 @@ Conversation flow:
 3. Clarify which service they require. Check the knowledge base to sound knowledgeable.
 4. Ask what date and time they would prefer to come in.
 5. Ask for their first and last name to secure the appointment.
-6. Once you have their name, date, and time, confirm the booking. You MUST use their name to thank them elegantly (e.g., "Thank you very much, [Name]. Your appointment is confirmed. We look forward to welcoming you to Victoria Park Medispa.").
-7. IMMEDIATELY after saying your elegant goodbye, use your end call function to hang up.`
+6. Once you have their name, date, and time, confirm the booking. You MUST use their name to thank them elegantly (e.g., "Thank you very much, [Name]. Your appointment is confirmed. We look forward to welcoming you to Victoria Park Medispa. Have a wonderful day.").
+7. Stop talking and wait for the caller to hang up.`
             }
           ]
         },
-        endCallFunctionEnabled: true,
         voice: {
           provider: "11labs",
           voiceId: "EXAVITQu4vr4xnSDxMaL", // Exact ElevenLabs ID for Sarah
