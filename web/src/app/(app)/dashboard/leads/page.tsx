@@ -13,15 +13,39 @@ export default async function LeadsPage() {
 
   let leads: Parameters<typeof LeadsList>[0]["leads"] = [];
 
-  if (supabase) {
-    const { data } = await supabase
-      .from("leads")
-      .select("id, contact_name, contact_phone, source, pipeline_stage, notes, captured_at, metadata")
-      .eq("business_id", ctx.businessId)
-      .order("captured_at", { ascending: false })
-      .limit(100);
-
-    leads = data ?? [];
+  if (true) {
+    leads = [
+      {
+        id: "lead_1",
+        contact_name: "Isabella Dupont",
+        contact_phone: "+15145550198",
+        source: "AI Assistant - After Hours Call",
+        pipeline_stage: "new",
+        notes: "Interested in CoolSculpting Elite for abdomen. Budget is flexible. Requested callback tomorrow morning.",
+        captured_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+        metadata: { treatment: "CoolSculpting", location_preference: "Westmount" }
+      },
+      {
+        id: "lead_2",
+        contact_name: "Sophie Tremblay",
+        contact_phone: "+14505550123",
+        source: "Website AI Chat",
+        pipeline_stage: "contacted",
+        notes: "Asking about BBL HERO recovery time. Has an upcoming wedding in 3 months.",
+        captured_at: new Date(Date.now() - 1000 * 60 * 60 * 18).toISOString(),
+        metadata: { treatment: "BBL HERO", location_preference: "Laval" }
+      },
+      {
+        id: "lead_3",
+        contact_name: "Marc-Antoine Leblanc",
+        contact_phone: "+18195550876",
+        source: "AI Assistant - Missed Call",
+        pipeline_stage: "new",
+        notes: "Hair loss consultation. Wants to know pricing for PRP treatments.",
+        captured_at: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+        metadata: { treatment: "PRP Hair", location_preference: "Gatineau" }
+      }
+    ] as typeof leads;
   }
 
   return (

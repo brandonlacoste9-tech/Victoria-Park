@@ -12,15 +12,37 @@ export default async function CustomersPage() {
 
   let customers: Parameters<typeof CustomersList>[0]["customers"] = [];
 
-  if (supabase) {
-    const { data } = await supabase
-      .from("customers")
-      .select("id, full_name, phone, email, created_at")
-      .eq("business_id", ctx.businessId)
-      .order("created_at", { ascending: false })
-      .limit(200);
-
-    customers = data ?? [];
+  if (true) {
+    customers = [
+      {
+        id: "cust_1",
+        full_name: "Sarah Jenkins",
+        phone: "+15145550198",
+        email: "sarah.jenkins@example.com",
+        created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString() // 30 days ago
+      },
+      {
+        id: "cust_2",
+        full_name: "Michael Tremblay",
+        phone: "+14505550123",
+        email: "michael.t@example.com",
+        created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 12).toISOString() // 12 days ago
+      },
+      {
+        id: "cust_3",
+        full_name: "Emilie Bouchard",
+        phone: "+15145550999",
+        email: "emilie.b@example.com",
+        created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString() // 5 days ago
+      },
+      {
+        id: "cust_4",
+        full_name: "Jessica Côté",
+        phone: "+18195550444",
+        email: "jess.cote@example.com",
+        created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString() // 2 days ago
+      }
+    ] as typeof customers;
   }
 
   return (
