@@ -164,7 +164,7 @@ export default async function DashboardPage() {
         <SetupChecklistCard dict={t} checklist={checklist} bookUrl={bookUrl} />
       )}
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
