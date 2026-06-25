@@ -36,63 +36,62 @@ export default async function DashboardPage() {
     process.env.URL?.trim() ||
     "https://justbookme.ca";
 
-  if (supabase) {
-    checklist = await getSetupChecklist(supabase, ctx.businessId);
+  if (true) {
+    checklist = {
+      id: "fake", business_id: "vicpark", phone_number: "+18005550199",
+      business_profile_completed: true, service_menu_completed: true, working_hours_completed: true,
+      vapi_credentials_completed: true, subscription_active: true, vapi_phone_id: "fake", provider: "twilio"
+    };
 
-    const { data: slugRow } = await supabase
-      .from("businesses")
-      .select("slug")
-      .eq("id", ctx.businessId)
-      .single();
-    if (slugRow?.slug) {
-      bookUrl = `${siteUrl.replace(/\/$/, "")}/book/${slugRow.slug}`;
-    }
-    const { count: apptCount } = await supabase
-      .from("appointments")
-      .select("id", { count: "exact", head: true })
-      .eq("business_id", ctx.businessId)
-      .gte("starts_at", todayStart.toISOString())
-      .lte("starts_at", todayEnd.toISOString())
-      .neq("status", "cancelled");
-
-    const { count: leadCount } = await supabase
-      .from("leads")
-      .select("id", { count: "exact", head: true })
-      .eq("business_id", ctx.businessId)
-      .in("pipeline_stage", ["new", "contacted"]);
-
-    const { count: noShowCount } = await supabase
-      .from("appointments")
-      .select("id", { count: "exact", head: true })
-      .eq("business_id", ctx.businessId)
-      .eq("status", "no_show")
-      .gte("starts_at", todayStart.toISOString())
-      .lte("starts_at", todayEnd.toISOString());
-
-    bookingsToday = apptCount ?? 0;
-    activeLeads = leadCount ?? 0;
-    noShowsToday = noShowCount ?? 0;
-
-    const { data: convos, count: callCount } = await supabase
-      .from("conversations")
-      .select(
-        "id, channel, from_number, started_at, duration_seconds, outcome, summary, transcript, recovered_revenue_cents",
-        { count: "exact" }
-      )
-      .eq("business_id", ctx.businessId)
-      .in("channel", ["voice", "sms"])
-      .gte("started_at", todayStart.toISOString())
-      .lte("started_at", todayEnd.toISOString())
-      .order("started_at", { ascending: false })
-      .limit(15);
-
-    voiceCallsToday = callCount ?? 0;
-    calls = (convos ?? []) as typeof calls;
-    aiBookingsToday = calls.filter((c) => c.outcome === "booked").length;
-    recoveredRevenueCents = calls.reduce(
-      (sum, c) => sum + (c.recovered_revenue_cents ?? 0),
-      0
-    );
+    bookUrl = `${siteUrl.replace(/\/$/, "")}/book/vicpark`;
+    
+    // Fake impressive stats for Victoria Park pitch
+    bookingsToday = 24;
+    activeLeads = 12;
+    voiceCallsToday = 58;
+    aiBookingsToday = 19;
+    recoveredRevenueCents = 1450000; // $14,500
+    noShowsToday = 0;
+    
+    // Create some fake recent calls
+    calls = [
+      {
+        id: "call_1",
+        created_at: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
+        channel: "voice",
+        from_number: "+15145550198",
+        status: "completed",
+        started_at: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
+        ended_at: new Date(Date.now() - 1000 * 60 * 12).toISOString(),
+        duration_seconds: 180,
+        recording_url: null,
+        outcome: "booked",
+        summary: "Caller booked a CoolSculpting consultation in Westmount for Thursday at 2 PM.",
+        transcript: "AI: Welcome to Victoria Park Medispa... Caller: Hi, I'd like to book CoolSculpting.",
+        user_sentiment: "Positive",
+        customer_id: "cust_1",
+        recovered_revenue_cents: 80000,
+        customers: { full_name: "Sarah Jenkins", phone: "+15145550198", email: "sarah@example.com" }
+      } as any,
+      {
+        id: "call_2",
+        created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+        channel: "voice",
+        from_number: "+14505550123",
+        status: "completed",
+        started_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+        ended_at: new Date(Date.now() - 1000 * 60 * 43).toISOString(),
+        duration_seconds: 120,
+        recording_url: null,
+        outcome: "booked",
+        summary: "Caller inquired about Botox pricing and booked an appointment in Laval.",
+        transcript: "AI: Welcome to Victoria Park Medispa... Caller: How much is Botox?",
+        user_sentiment: "Neutral",
+        customer_id: "cust_2",
+        recovered_revenue_cents: 40000,
+        customers: { full_name: "Michael Tremblay", phone: "+14505550123", email: "michael@example.com" }
+      } as any
+    ];
   }
 
   const recoveredLabel =
