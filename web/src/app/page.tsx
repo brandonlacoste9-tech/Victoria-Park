@@ -7,8 +7,8 @@ export default function VictoriaParkDemo() {
   return (
     <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d4af37]/30 selection:text-white flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[url('/bg.png')] bg-cover bg-center bg-no-repeat">
       
-      {/* Dark overlay to ensure text readability against the background image */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] pointer-events-none" />
+      {/* Heavy dark blur overlay to hide the mockup UI in the background image and turn it into ambient lighting */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[60px] pointer-events-none" />
 
       {/* Main Content Card - Leather Texture & Gold Border */}
       <div className="relative z-10 w-full max-w-[420px] mx-auto rounded-[32px] p-10 md:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex flex-col items-center text-center overflow-hidden"

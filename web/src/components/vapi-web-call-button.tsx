@@ -95,7 +95,7 @@ Conversation flow:
     <button
       onClick={toggleCall}
       disabled={!vapi || callStatus === "loading"}
-      className={`relative flex items-center justify-center gap-3 rounded-full px-8 py-4 text-[17px] tracking-wide font-medium transition-all duration-500 overflow-hidden ${
+      className={`relative w-full flex items-center justify-center gap-3 rounded-full px-8 py-4 text-[17px] tracking-wide font-medium transition-all duration-500 overflow-hidden ${
         callStatus === "active" 
           ? "animate-pulse" 
           : "hover:scale-[1.02] active:scale-95"
