@@ -58,8 +58,8 @@ Conversation flow:
 4. Assist them gracefully.`
         },
         voice: {
-          provider: "openai",
-          voiceId: "alloy"
+          provider: "11labs",
+          voiceId: "jBpfuIE2acCO8z3wKNLl" // Sarah - Professional conversational voice
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
