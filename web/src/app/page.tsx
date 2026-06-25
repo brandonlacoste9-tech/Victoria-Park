@@ -36,7 +36,7 @@ export default function VictoriaParkDemo() {
         </div>
 
         {/* Victoria Park Logo */}
-        <img src="/logo.png" alt="Victoria Park Medispa" className="h-24 md:h-32 object-contain mb-4 mix-blend-screen" />
+        <img src="/logo.png" alt="Victoria Park Medispa" className="h-40 md:h-56 object-contain mb-4 mix-blend-screen" />
 
         {/* Subtitle - Metallic Gradient */}
         <p className="text-[11px] tracking-[0.35em] uppercase font-bold mb-8 z-10"
