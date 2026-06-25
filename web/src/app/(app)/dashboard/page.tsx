@@ -36,12 +36,10 @@ export default async function DashboardPage() {
 
   if (true) {
     checklist = {
-      business_profile_completed: true,
-      service_menu_completed: true,
-      working_hours_completed: true,
-      vapi_credentials_completed: true,
-      subscription_active: true,
-      phone_number: "+18005550199",
+      allDone: true,
+      completed: 5,
+      total: 5,
+      items: [],
     } as unknown as typeof checklist;
 
     bookUrl = `${siteUrl.replace(/\/$/, "")}/book/vicpark`;

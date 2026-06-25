@@ -12,18 +12,45 @@ export default async function CallsPage() {
 
   let calls: Parameters<typeof CallsList>[0]["calls"] = [];
 
-  if (supabase) {
-    const { data } = await supabase
-      .from("conversations")
-      .select(
-        "id, channel, from_number, started_at, duration_seconds, outcome, summary, transcript, recovered_revenue_cents"
-      )
-      .eq("business_id", ctx.businessId)
-      .in("channel", ["voice", "sms"])
-      .order("started_at", { ascending: false })
-      .limit(50);
-
-    calls = (data ?? []) as typeof calls;
+  if (true) {
+    calls = [
+      {
+        id: "call_1",
+        created_at: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+        channel: "voice",
+        from_number: "+15145550198",
+        status: "completed",
+        started_at: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+        ended_at: new Date(Date.now() - 1000 * 60 * 3).toISOString(),
+        duration_seconds: 145,
+        recording_url: null,
+        outcome: "booked",
+        summary: "Patient called to book a Morpheus8 treatment. Confirmed appointment for next Tuesday at 2 PM.",
+        transcript: "AI: Welcome to Victoria Park Medispa... Caller: Hi, I'd like to book Morpheus8.",
+        user_sentiment: "Positive",
+        customer_id: "cust_1",
+        recovered_revenue_cents: 80000,
+        customers: { full_name: "Sarah Jenkins", phone: "+15145550198", email: "sarah@example.com" }
+      } as unknown as typeof calls[0],
+      {
+        id: "call_2",
+        created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+        channel: "voice",
+        from_number: "+14505550123",
+        status: "completed",
+        started_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+        ended_at: new Date(Date.now() - 1000 * 60 * 43).toISOString(),
+        duration_seconds: 120,
+        recording_url: null,
+        outcome: "booked",
+        summary: "Caller inquired about Botox pricing and booked an appointment in Laval.",
+        transcript: "AI: Welcome to Victoria Park Medispa... Caller: How much is Botox?",
+        user_sentiment: "Neutral",
+        customer_id: "cust_2",
+        recovered_revenue_cents: 40000,
+        customers: { full_name: "Michael Tremblay", phone: "+14505550123", email: "michael@example.com" }
+      } as unknown as typeof calls[0]
+    ];
   }
 
   return (
