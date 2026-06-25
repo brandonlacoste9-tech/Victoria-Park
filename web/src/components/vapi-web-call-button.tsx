@@ -21,12 +21,8 @@ export function VapiWebCallButton({
     
     vapiInstance.on("call-start", () => setCallStatus("active"));
     vapiInstance.on("call-end", () => setCallStatus("idle"));
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vapiInstance.on("error", (e: any) => {
-      console.error(e);
-      let errStr = "";
-      try { errStr = JSON.stringify(e, null, 2); } catch(ex) { errStr = String(e); }
-      alert("Vapi Event Error: " + errStr);
+      console.error("Vapi Event Error:", e);
       setCallStatus("idle");
     });
 
