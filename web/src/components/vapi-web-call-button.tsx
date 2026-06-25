@@ -59,8 +59,8 @@ Conversation flow:
 4. Assist them gracefully.`
         },
         voice: {
-          provider: "openai",
-          voiceId: "alloy" 
+          provider: "11labs",
+          voiceId: "rachel" // Uses the user's ElevenLabs account via Vapi
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
