@@ -6,10 +6,10 @@ import { requireOnboardedContext } from "@/lib/auth/get-business-context";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function LeadsPage() {
-  const ctx = await requireOnboardedContext();
+  const _ctx = await requireOnboardedContext();
   const locale = await getLocale();
   const t = getDictionary(locale);
-  const supabase = await createSupabaseServerClient();
+  const _supabase = await createSupabaseServerClient();
 
   let leads: Parameters<typeof LeadsList>[0]["leads"] = [];
 

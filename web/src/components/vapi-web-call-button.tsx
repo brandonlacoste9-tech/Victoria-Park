@@ -9,11 +9,9 @@ const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || "dummy_key";
 export function VapiWebCallButton({ 
   assistantOverrides 
 }: { 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  assistantOverrides?: Record<string, any> 
+  assistantOverrides?: Record<string, unknown> 
 }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [vapi, setVapi] = useState<any>(null);
+  const [vapi, setVapi] = useState<Vapi | null>(null);
   const [callStatus, setCallStatus] = useState<"idle" | "loading" | "active">("idle");
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export function VapiWebCallButton({
     
     vapiInstance.on("call-start", () => setCallStatus("active"));
     vapiInstance.on("call-end", () => setCallStatus("idle"));
-    vapiInstance.on("error", (e: any) => {
+    vapiInstance.on("error", (e: unknown) => {
       console.error("Vapi Event Error:", e);
       setCallStatus("idle");
     });
@@ -89,6 +87,7 @@ Conversation flow:
       };
 
       try {
+        // @ts-expect-error - Vapi SDK types conflict with loosely typed overrides
         await vapi?.start(assistant);
       } catch (err) {
         console.error("Failed to start call:", err);
