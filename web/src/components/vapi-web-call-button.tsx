@@ -67,7 +67,8 @@ Conversation flow:
         },
         voice: {
           provider: "11labs",
-          voiceId: "EXAVITQu4vr4xnSDxMaL" // Exact ElevenLabs ID for Sarah
+          voiceId: "EXAVITQu4vr4xnSDxMaL", // Exact ElevenLabs ID for Sarah
+          model: "eleven_turbo_v2_5" // Forces the natively multilingual low-latency model
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
