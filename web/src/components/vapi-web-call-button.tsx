@@ -78,17 +78,36 @@ Conversation flow:
     <button
       onClick={toggleCall}
       disabled={!vapi || callStatus === "loading"}
-      className={`flex items-center justify-center gap-3 rounded-full px-8 py-4 text-lg font-semibold transition-all shadow-xl ${
+      className={`relative flex items-center justify-center gap-3 rounded-full px-8 py-4 text-[17px] tracking-wide font-medium transition-all duration-500 overflow-hidden ${
         callStatus === "active" 
-          ? "bg-red-500 text-white hover:bg-red-600 animate-pulse" 
-          : "bg-gradient-to-r from-[#d4af37] to-[#a38020] text-black hover:scale-105"
+          ? "animate-pulse" 
+          : "hover:scale-[1.02] active:scale-95"
       }`}
+      style={{
+        background: 'linear-gradient(180deg, #d4af37 0%, #b38728 100%)',
+        boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -2px 0 rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.5)',
+        border: '1px solid #e9b646',
+        color: '#1a1a1a',
+        textShadow: '0 1px 0 rgba(255,255,255,0.3)'
+      }}
     >
-      {callStatus === "loading" && <Loader2 className="h-6 w-6 animate-spin" />}
-      {callStatus === "idle" && <PhoneCall className="h-6 w-6" />}
-      {callStatus === "active" && <Mic className="h-6 w-6" />}
-      
-      {callStatus === "loading" ? "Connecting..." : callStatus === "active" ? "End Call" : "Call the Concierge"}
+      {/* Subtle inner shimmer line */}
+      <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
+
+      {callStatus === "loading" ? (
+        <Loader2 className="h-5 w-5 animate-spin opacity-80" />
+      ) : callStatus === "active" ? (
+        <Mic className="h-5 w-5 opacity-90" />
+      ) : (
+        <PhoneCall className="h-5 w-5 opacity-90" />
+      )}
+      <span>
+        {callStatus === "loading" 
+          ? "Connecting..." 
+          : callStatus === "active" 
+            ? "Tap to End Call" 
+            : "Call the Concierge"}
+      </span>
     </button>
   );
 }
