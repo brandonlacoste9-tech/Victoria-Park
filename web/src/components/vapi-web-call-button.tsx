@@ -24,7 +24,9 @@ export function VapiWebCallButton({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vapiInstance.on("error", (e: any) => {
       console.error(e);
-      alert("Vapi Error: " + (e.message || e.error?.message || JSON.stringify(e)));
+      let errStr = "";
+      try { errStr = JSON.stringify(e, null, 2); } catch(ex) { errStr = String(e); }
+      alert("Vapi Event Error: " + errStr);
       setCallStatus("idle");
     });
 
@@ -65,7 +67,7 @@ Conversation flow:
         },
         voice: {
           provider: "11labs",
-          voiceId: "rachel" // Uses the user's ElevenLabs account via Vapi
+          voiceId: "EXAVITQu4vr4xnSDxMaL" // Exact ElevenLabs ID for Sarah
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
