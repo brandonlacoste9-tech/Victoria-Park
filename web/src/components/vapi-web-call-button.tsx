@@ -38,18 +38,30 @@ export function VapiWebCallButton({
     if (callStatus === "active") {
       vapi?.stop();
     } else {
+      if (VAPI_PUBLIC_KEY === "dummy_key" || !VAPI_PUBLIC_KEY) {
+        alert("VAPI Public Key is missing! Please add NEXT_PUBLIC_VAPI_PUBLIC_KEY to your Netlify Environment Variables and redeploy.");
+        return;
+      }
       setCallStatus("loading");
       
       const assistant = {
         model: {
           provider: "openai",
           model: "gpt-4o",
-          systemPrompt: assistantOverrides?.voiceGreeting || "Hello, how can I help?"
+          systemPrompt: `You are the elite AI Receptionist for Victoria Park Medispa. Your tone is incredibly professional, warm, refined, and luxury-tier.
+You help callers book appointments for our exclusive aesthetic treatments across our various clinics.
+
+Conversation flow:
+1. You already greeted them: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?"
+2. VERY IMPORTANT: Since we have multiple clinics, you MUST politely ask which Victoria Park location they would prefer to visit (e.g. Westmount, Downtown, Laval, etc.) before proceeding.
+3. Clarify which service they require.
+4. Assist them gracefully.`
         },
         voice: {
           provider: "openai",
           voiceId: "alloy"
         },
+        firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
       };
 
