@@ -59,8 +59,8 @@ Conversation flow:
 4. Assist them gracefully.`
         },
         voice: {
-          provider: "11labs",
-          voiceId: "rachel" // Use a standard default name to avoid ID errors
+          provider: "openai",
+          voiceId: "alloy" 
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
