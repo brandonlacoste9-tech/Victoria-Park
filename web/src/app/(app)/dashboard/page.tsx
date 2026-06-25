@@ -6,14 +6,12 @@ import { getLocale } from "@/lib/i18n/get-locale";
 import { requireOnboardedContext } from "@/lib/auth/get-business-context";
 import { getSetupChecklist } from "@/lib/onboarding/setup-checklist";
 import { getOutboundSmsStatus } from "@/lib/usage/outbound-sms-status";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { Calendar, DollarSign, Phone, TrendingUp, UserX } from "lucide-react";
 
 export default async function DashboardPage() {
   const ctx = await requireOnboardedContext();
   const locale = await getLocale();
   const t = getDictionary(locale);
-  const supabase = await createSupabaseServerClient();
 
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
@@ -72,7 +70,7 @@ export default async function DashboardPage() {
         customer_id: "cust_1",
         recovered_revenue_cents: 80000,
         customers: { full_name: "Sarah Jenkins", phone: "+15145550198", email: "sarah@example.com" }
-      } as any,
+      } as unknown as typeof calls[0],
       {
         id: "call_2",
         created_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
@@ -90,7 +88,7 @@ export default async function DashboardPage() {
         customer_id: "cust_2",
         recovered_revenue_cents: 40000,
         customers: { full_name: "Michael Tremblay", phone: "+14505550123", email: "michael@example.com" }
-      } as any
+      } as unknown as typeof calls[0]
     ];
   }
 
