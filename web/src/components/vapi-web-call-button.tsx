@@ -24,6 +24,7 @@ export function VapiWebCallButton({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vapiInstance.on("error", (e: any) => {
       console.error(e);
+      alert("Vapi Error: " + (e.message || e.error?.message || JSON.stringify(e)));
       setCallStatus("idle");
     });
 
@@ -59,7 +60,7 @@ Conversation flow:
         },
         voice: {
           provider: "11labs",
-          voiceId: "jBpfuIE2acCO8z3wKNLl" // Sarah - Professional conversational voice
+          voiceId: "rachel" // Use a standard default name to avoid ID errors
         },
         firstMessage: "Welcome to Victoria Park Medispa, how can I elevate your aesthetic journey today?",
         ...assistantOverrides
@@ -67,8 +68,9 @@ Conversation flow:
 
       try {
         await vapi?.start(assistant);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Failed to start call:", err);
+        alert("Failed to start call: " + (err.message || JSON.stringify(err)));
         setCallStatus("idle");
       }
     }
