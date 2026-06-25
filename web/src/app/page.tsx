@@ -34,12 +34,9 @@ export default function VictoriaParkDemo() {
           </div>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-[42px] font-serif tracking-normal text-white mb-2 font-medium drop-shadow-md z-10"
-            style={{ fontFamily: '"Playfair Display", "Times New Roman", serif' }}>
-          Victoria Park
-        </h1>
-        
+        {/* Victoria Park Logo */}
+        <img src="/logo.png" alt="Victoria Park Medispa" className="h-16 md:h-20 object-contain mb-2 mix-blend-screen" />
+
         {/* Subtitle - Metallic Gradient */}
         <p className="text-[11px] tracking-[0.35em] uppercase font-bold mb-8 z-10"
            style={{
